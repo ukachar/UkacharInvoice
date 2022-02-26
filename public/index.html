@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ukachar's invoice</title>
-    <link rel="stylesheet" href="reqAssets/style.css" />
+  <!--  <link rel="stylesheet" href="reqAssets/style.css" />-->
   </head>
   <body>
     <section
@@ -16,7 +16,7 @@
       >
         Podaci o kupcu
       </h2>
-
+<form action="/" method="post">
       <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
         <div>
           <label class="text-gray-700 dark:text-gray-200" for="nazivTvrtke"
@@ -84,14 +84,17 @@
       </div>
 
       <div class="flex justify-end mt-6">
-        <button
+        <button type="submit"
           id="spremKupca"
           class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
         >
           Spremi kupca
         </button>
+
+      </form>
       </div>
     </section>
-    <script src="index.js"></script>
+
+   
   </body>
 </html>

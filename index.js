@@ -1,3 +1,4 @@
+//SERVER START
 const express = require("express");
 const port = process.env.PORT || 5000;
 const app = express();
@@ -10,13 +11,15 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static("public"));
 
-app.get("/form", (req, res) => {
-  res.sendFile(__dirname + "index.html");
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/formPost", (req, res) => {
   console.log(req.body);
 });
+
+//SERVER END
 
 //Dohvacanje datuma za ponudu
 const date = new Date();
@@ -138,7 +141,6 @@ easyinvoice.createInvoice(data, function (result) {
   const pdf = result.pdf;
   fs.writeFileSync("invoice.pdf", pdf, "base64");
 });
-
 /*
 const nazivTvrtke = document.getElementById("nazivTvrtke");
 const adresa = document.getElementById("adresa");
@@ -162,7 +164,7 @@ spremKupca.addEventListener("click", function () {
   };
 
   const jsonString = JSON.stringify(customer);
-  fs.writeFile("test.json", jsonString, (err) => {
+  fs.writeFile("tester.json", jsonString, (err) => {
     if (err) {
       console.log("Error writing file", err);
     } else {
