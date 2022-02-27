@@ -2,6 +2,11 @@
 const express = require("express");
 const port = process.env.PORT || 5000;
 const app = express();
+const maticnaTvrtka = require("./reqData/mothInfo.json");
+const tvrtka = require("./reqData/clientinfo.json");
+
+const easyinvoice = require("easyinvoice");
+const fs = require("fs");
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
@@ -9,14 +14,52 @@ app.listen(port, () => {
 
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.static("public"));
 
+// Define the static file path
+app.use(express.static(__dirname + "/public"));
+/*
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });
 
 app.post("/formPost", (req, res) => {
   console.log(req.body);
+});
+*/
+app.get("/", (req, res, next) => {
+  res.sendFile(__dirname + "/public/index.html");
+  /*res.send(`<form method="POST" action="/">
+  <input type="text" name="username" placeholder="username">
+  <input type="submit">
+</form>`);*/
+});
+
+/** Process POST request */
+app.post("/", function (req, res) {
+  res.send(JSON.stringify(req.body));
+
+  function writeClient() {
+    const jsonString = JSON.stringify(req.body);
+    fs.writeFile("reqData/clientinfo.json", jsonString, (err) => {
+      if (err) {
+        console.log("Error writing file", err);
+      } else {
+        console.log("Successfully wrote file");
+      }
+    });
+  }
+
+  console.log(req.body);
+  /* var tvrtka = {
+    client: {
+      company: `${tvrtka.client.company}`,
+      address: `${tvrtka.client.address}`,
+      zip: `${tvrtka.client.zip}`,
+      city: `${tvrtka.client.city}`,
+      country: `${tvrtka.client.country}`,
+    },
+  };*/
+  writeClient();
 });
 
 //SERVER END
@@ -33,13 +76,7 @@ const [hour, minutes, seconds] = [
   date.getMinutes(),
   date.getSeconds(),
 ];
-
-const maticnaTvrtka = require("./reqData/mothInfo.json");
-const tvrtka = require("./reqData/clientinfo.json");
-
-const easyinvoice = require("easyinvoice");
-const fs = require("fs");
-
+/*
 const data = {
   client: {
     company: `${tvrtka.client.company}`,

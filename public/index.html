@@ -5,96 +5,128 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ukachar's invoice</title>
-  <!--  <link rel="stylesheet" href="reqAssets/style.css" />-->
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
+  <body class="bg-gray-800">
+    <section class="dark:bg-coolGray-800 dark:text-coolGray-100">
+      <div
+        class="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row"
+      >
+        <div
+          class="flex items-center justify-center p-6 mt-8 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128"
+        >
+          <img
+            src="images/logo.png"
+            alt=""
+            class="object-contain h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128"
+          />
+        </div>
+        <div
+          class="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left"
+        >
+          <h1 class="text-5xl font-bold leading-none sm:text-6xl">
+            Ukachar's <span class="dark:text-gray-900">Invoice</span>System
+          </h1>
+        </div>
+      </div>
+    </section>
+
     <section
-      class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-800"
+      class="max-w-4xl p-6 mx-auto bg-white rounded-md shadow-md dark:bg-gray-900"
     >
       <h2
         class="text-lg font-semibold text-gray-700 capitalize dark:text-white"
       >
-        Podaci o kupcu
+        Podaci o klijentu
       </h2>
-<form action="/" method="post">
-      <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="nazivTvrtke"
-            >Naziv Tvrtke</label
-          >
-          <input
-            id="nazivTvrtke"
-            type="text"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
+
+      <form action="/" method="post">
+        <div class="grid grid-cols-1 gap-6 mt-4 sm:grid-cols-2">
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="username"
+              >Naziv tvrtke</label
+            >
+            <input
+              name="company"
+              id="nazivTvrtke"
+              type="text"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="emailAddress"
+              >Adresa tvrtke</label
+            >
+            <input
+              name="address"
+              id="adresaTvrtke"
+              type="text"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="password"
+              >Poštanski broj</label
+            >
+            <input
+              name="zip"
+              id="pbroj"
+              type="number"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
+
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="city"
+              >Mjesto</label
+            >
+            <input
+              name="city"
+              id="mjesto"
+              type="text"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="drzava"
+              >Država</label
+            >
+            <input
+              name="drzava"
+              id="drzava"
+              type="text"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
+          <div>
+            <label class="text-gray-700 dark:text-gray-200" for="oib"
+              >OIB</label
+            >
+            <input
+              name="oib"
+              id="oib"
+              type="number"
+              class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
+              required
+            />
+          </div>
         </div>
 
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="adresa"
-            >Adresa</label
+        <div class="flex justify-end mt-6">
+          <button
+            class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
           >
-          <input
-            id="adresa"
-            type="text"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
+            Spremi
+          </button>
         </div>
-
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="mjesto"
-            >Mjesto</label
-          >
-          <input
-            id="mjesto"
-            type="text"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
-        </div>
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="pbroj"
-            >Poštanski broj</label
-          >
-          <input
-            id="pbroj"
-            type="number"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
-        </div>
-
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="drzava"
-            >Država</label
-          >
-          <input
-            id="drzava"
-            type="text"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
-        </div>
-        <div>
-          <label class="text-gray-700 dark:text-gray-200" for="oib"
-            >OIB tvrtke</label
-          >
-          <input
-            id="oib"
-            type="number"
-            class="block w-full px-4 py-2 mt-2 text-gray-700 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-          />
-        </div>
-      </div>
-
-      <div class="flex justify-end mt-6">
-        <button type="submit"
-          id="spremKupca"
-          class="px-6 py-2 leading-5 text-white transition-colors duration-200 transform bg-gray-700 rounded-md hover:bg-gray-600 focus:outline-none focus:bg-gray-600"
-        >
-          Spremi kupca
-        </button>
-
       </form>
-      </div>
     </section>
-
-   
   </body>
 </html>
