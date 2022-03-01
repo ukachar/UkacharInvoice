@@ -1,10 +1,307 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Ukachar's invoice | Step 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body></body>
+  <body class="dark:bg-gray-800">
+    <section class="bg-white dark:bg-gray-800">
+      <nav
+        class="container p-6 mx-auto lg:flex lg:justify-center lg:items-center"
+      >
+        <div class="flex items-center justify-center">
+          <div>
+            <a
+              class="text-2xl font-bold text-gray-800 dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
+              href="#"
+              ><img src="images/logo.png" alt="" width="200"
+            /></a>
+          </div>
+
+        
+
+      </nav>
+
+      <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
+        <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
+            <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
+                
+                <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Unesite podatke</h1>
+                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Šifra</label>
+                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. 004" />
+                <label for="email2" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Naziv artikla</label>
+                <div class="relative mb-5 mt-2">
+                   
+                    <input id="email2" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. Usluga izrade web stranice" />
+                </div>
+                <label for="cijena" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Cijena</label>
+                <div class="relative mb-5 mt-2">
+                    
+                    <input id="cijena" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. 268"  type="number"/>
+                </div>
+                
+                <div class="flex items-center justify-start w-full">
+                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Spremi</button>
+                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="modalHandler()">Odustani</button>
+                </div>
+                <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">
+                    <svg  xmlns="http://www.w3.org/2000/svg"  class="icon icon-tabler icon-tabler-x" width="20" height="20" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" />
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="w-full flex justify-center py-12" id="button">
+        <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" onclick="modalHandler(true)">Dodaj artikl</button>
+    </div>
+        
+<div class="container  mx-auto lg:flex lg:justify-center lg:items-center">
+<div class="flex flex-col justify-center w-4/5">
+<div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+<div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+<div class="overflow-hidden shadow-md sm:rounded-lg">
+<table class="min-w-full">
+<thead class="bg-gray-50 dark:bg-gray-700">
+<tr>
+<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+Redni broj
+</th>
+<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+  šifra
+  </th>
+<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+Naziv artikla
+</th>
+<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+Cijena
+</th>
+<th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+  <span class="sr-only">Edit</span>
+</th>
+<th scope="col" class="relative py-3 px-6">
+
+</th>
+</tr>
+</thead>
+<tbody>
+
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+1
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+001
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+Laptop
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+  268,00
+  </td>
+
+<td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+<a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+</td>
+</tr>
+
+<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+<td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+2
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+0015
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+Desktop Pc
+</td>
+<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
+  150,00
+  </td>
+
+<td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
+<a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+</td>
+</tr>
+
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="w-full flex justify-center py-12" id="button">
+  <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" >Generiraj ponudu</button>
+</div>
+
+<!-- STEPOVI-->
+<div class="w-full py-6">
+  <div class="flex justify-center">
+    <div class="w-1/4">
+      <div class="relative mb-2">
+        <div
+          class="w-10 h-10 mx-auto bg-green-500 rounded-full text-lg text-white flex items-center"
+        >
+          <span class="text-center text-white w-full">
+            <svg
+              class="w-full fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                class="heroicon-ui"
+                d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5c0-1.1.9-2 2-2zm14 8V5H5v6h14zm0 2H5v6h14v-6zM8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="text-xs text-center md:text-base text-gray-700 dark:text-gray-200"
+      >
+        Klijent
+      </div>
+    </div>
+
+    <div class="w-1/4">
+      <div class="relative mb-2">
+        <div
+          class="absolute flex align-center items-center align-middle content-center"
+          style="
+            width: calc(100% - 2.5rem - 1rem);
+            top: 50%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <div
+            class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1"
+          >
+            <div
+              class="w-0 bg-green-300 py-1 rounded"
+              style="width: 100%"
+            ></div>
+          </div>
+        </div>
+
+        <div
+          class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-white flex items-center"
+        >
+          <span class="text-center text-gray-600 w-full">
+            <svg
+              class="w-full fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                class="heroicon-ui"
+                d="M19 10h2a1 1 0 0 1 0 2h-2v2a1 1 0 0 1-2 0v-2h-2a1 1 0 0 1 0-2h2V8a1 1 0 0 1 2 0v2zM9 12A5 5 0 1 1 9 2a5 5 0 0 1 0 10zm0-2a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8 11a1 1 0 0 1-2 0v-2a3 3 0 0 0-3-3H7a3 3 0 0 0-3 3v2a1 1 0 0 1-2 0v-2a5 5 0 0 1 5-5h5a5 5 0 0 1 5 5v2z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="text-xs text-center md:text-base text-gray-700 dark:text-gray-200"
+      >
+        Ponuda
+      </div>
+    </div>
+
+    <div class="w-1/4">
+      <div class="relative mb-2">
+        <div
+          class="absolute flex align-center items-center align-middle content-center"
+          style="
+            width: calc(100% - 2.5rem - 1rem);
+            top: 50%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <div
+            class="w-full bg-gray-200 rounded items-center align-middle align-center flex-1"
+          >
+            <div
+              class="w-0 bg-green-300 py-1 rounded"
+              style="width: 33%"
+            ></div>
+          </div>
+        </div>
+
+        <div
+          class="w-10 h-10 mx-auto bg-white border-2 border-gray-200 rounded-full text-lg text-white flex items-center"
+        >
+          <span class="text-center text-gray-600 w-full">
+            <svg
+              class="w-full fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="24"
+              height="24"
+            >
+              <path
+                class="heroicon-ui"
+                d="M9 4.58V4c0-1.1.9-2 2-2h2a2 2 0 0 1 2 2v.58a8 8 0 0 1 1.92 1.11l.5-.29a2 2 0 0 1 2.74.73l1 1.74a2 2 0 0 1-.73 2.73l-.5.29a8.06 8.06 0 0 1 0 2.22l.5.3a2 2 0 0 1 .73 2.72l-1 1.74a2 2 0 0 1-2.73.73l-.5-.3A8 8 0 0 1 15 19.43V20a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2v-.58a8 8 0 0 1-1.92-1.11l-.5.29a2 2 0 0 1-2.74-.73l-1-1.74a2 2 0 0 1 .73-2.73l.5-.29a8.06 8.06 0 0 1 0-2.22l-.5-.3a2 2 0 0 1-.73-2.72l1-1.74a2 2 0 0 1 2.73-.73l.5.3A8 8 0 0 1 9 4.57zM7.88 7.64l-.54.51-1.77-1.02-1 1.74 1.76 1.01-.17.73a6.02 6.02 0 0 0 0 2.78l.17.73-1.76 1.01 1 1.74 1.77-1.02.54.51a6 6 0 0 0 2.4 1.4l.72.2V20h2v-2.04l.71-.2a6 6 0 0 0 2.41-1.4l.54-.51 1.77 1.02 1-1.74-1.76-1.01.17-.73a6.02 6.02 0 0 0 0-2.78l-.17-.73 1.76-1.01-1-1.74-1.77 1.02-.54-.51a6 6 0 0 0-2.4-1.4l-.72-.2V4h-2v2.04l-.71.2a6 6 0 0 0-2.41 1.4zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+
+      <div
+        class="text-xs text-center md:text-base text-gray-700 dark:text-gray-200"
+      >
+        Završetak
+      </div>
+    </div>
+  </div>
+</div>
+      
+    </section>
+    <script>
+      let modal = document.getElementById("modal");
+      modal.style.display = 'none';
+      function modalHandler(val) {
+          if (val) {
+              fadeIn(modal);
+              modal.style.display = 'block';
+          } else {
+              fadeOut(modal);
+          }
+      }
+      function fadeOut(el) {
+          el.style.opacity = 1;
+          (function fade() {
+              if ((el.style.opacity -= 0.1) < 0) {
+                  el.style.display = "none";
+              } else {
+                  requestAnimationFrame(fade);
+              }
+          })();
+      }
+      function fadeIn(el, display) {
+          el.style.opacity = 0;
+          el.style.display = display || "flex";
+          (function fade() {
+              let val = parseFloat(el.style.opacity);
+              if (!((val += 0.2) > 1)) {
+                  el.style.opacity = val;
+                  requestAnimationFrame(fade);
+              }
+          })();
+      }
+  </script>
+  </body>
 </html>

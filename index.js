@@ -35,8 +35,8 @@ app.get("/", (req, res, next) => {
 });
 
 /** Process POST request */
-app.post("/", function (req, res) {
-  res.send(JSON.stringify(req.body));
+app.post("/step", function (req, res) {
+  res.sendFile(__dirname + "/public/offer.html");
 
   function writeClient() {
     const jsonString = JSON.stringify(req.body);
@@ -49,7 +49,6 @@ app.post("/", function (req, res) {
     });
   }
 
-  console.log(req.body);
   /* var tvrtka = {
     client: {
       company: `${tvrtka.client.company}`,
@@ -60,6 +59,14 @@ app.post("/", function (req, res) {
     },
   };*/
   writeClient();
+});
+
+app.get("/stepdva", (req, res, next) => {
+  res.sendFile(__dirname + "/public/offer.html");
+  /*res.send(`<form method="POST" action="/">
+  <input type="text" name="username" placeholder="username">
+  <input type="submit">
+</form>`);*/
 });
 
 //SERVER END
