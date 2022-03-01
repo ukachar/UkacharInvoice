@@ -24,18 +24,18 @@
         
 
       </nav>
-
+<!-- START MODAL-->
       <div class="py-12 bg-gray-700 transition duration-150 ease-in-out z-10 absolute top-0 right-0 bottom-0 left-0" id="modal">
         <div role="alert" class="container mx-auto w-11/12 md:w-2/3 max-w-lg">
             <div class="relative py-8 px-5 md:px-10 bg-white shadow-md rounded border border-gray-400">
                 
                 <h1 class="text-gray-800 font-lg font-bold tracking-normal leading-tight mb-4">Unesite podatke</h1>
-                <label for="name" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Šifra</label>
-                <input id="name" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. 004" />
-                <label for="email2" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Naziv artikla</label>
+                <label for="sifra" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Šifra</label>
+                <input id="sifra" class="mb-5 mt-2 text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. 004" />
+                <label for="naziv" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Naziv artikla</label>
                 <div class="relative mb-5 mt-2">
                    
-                    <input id="email2" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. Usluga izrade web stranice" />
+                    <input id="naziv" class="text-gray-600 focus:outline-none focus:border focus:border-indigo-700 font-normal w-full h-10 flex items-center pl-3 text-sm border-gray-300 rounded border" placeholder="npr. Usluga izrade web stranice" />
                 </div>
                 <label for="cijena" class="text-gray-800 text-sm font-bold leading-tight tracking-normal">Cijena</label>
                 <div class="relative mb-5 mt-2">
@@ -44,7 +44,7 @@
                 </div>
                 
                 <div class="flex items-center justify-start w-full">
-                    <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Spremi</button>
+                    <button id="spremi" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-8 py-2 text-sm">Spremi</button>
                     <button class="focus:outline-none focus:ring-2 focus:ring-offset-2  focus:ring-gray-400 ml-3 bg-gray-100 transition duration-150 text-gray-600 ease-in-out hover:border-gray-400 hover:bg-gray-300 border rounded px-8 py-2 text-sm" onclick="modalHandler()">Odustani</button>
                 </div>
                 <button class="cursor-pointer absolute top-0 right-0 mt-4 mr-5 text-gray-400 hover:text-gray-600 transition duration-150 ease-in-out rounded focus:ring-2 focus:outline-none focus:ring-gray-600" onclick="modalHandler()" aria-label="close modal" role="button">
@@ -60,7 +60,7 @@
     <div class="w-full flex justify-center py-12" id="button">
         <button class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 mx-auto transition duration-150 ease-in-out hover:bg-indigo-600 bg-indigo-700 rounded text-white px-4 sm:px-8 py-2 text-xs sm:text-sm" onclick="modalHandler(true)">Dodaj artikl</button>
     </div>
-        
+        <!--END MODAL-->
 <div class="container  mx-auto lg:flex lg:justify-center lg:items-center">
 <div class="flex flex-col justify-center w-4/5">
 <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -82,52 +82,16 @@ Naziv artikla
 Cijena
 </th>
 <th scope="col" class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-  <span class="sr-only">Edit</span>
+  <span class="sr-only ">Edit</span>
 </th>
 <th scope="col" class="relative py-3 px-6">
 
 </th>
 </tr>
 </thead>
-<tbody>
+<tbody id="tbody">
 
-<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-<td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-1
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-001
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-Laptop
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-  268,00
-  </td>
 
-<td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-<a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-</td>
-</tr>
-
-<tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-<td class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-2
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-0015
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-Desktop Pc
-</td>
-<td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-  150,00
-  </td>
-
-<td class="py-4 px-6 text-sm font-medium text-right whitespace-nowrap">
-<a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-</td>
-</tr>
 
 </tbody>
 </table>
@@ -270,6 +234,7 @@ Desktop Pc
 </div>
       
     </section>
+    <script src="js/artikli.js"></script>
     <script>
       let modal = document.getElementById("modal");
       modal.style.display = 'none';
