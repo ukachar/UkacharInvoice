@@ -4,7 +4,6 @@ const port = process.env.PORT || 5000;
 const app = express();
 const maticnaTvrtka = require("./reqData/mothInfo.json");
 const tvrtka = require("./reqData/clientinfo.json");
-const articles = require("./reqData/articles.json");
 const easyinvoice = require("easyinvoice");
 const fs = require("fs");
 
@@ -55,7 +54,7 @@ app.post("/step", function (req, res) {
 app.post("/step2", (req, res) => {
   //res.send(`<h1>Šljaka</h1>`);
   res.send(req.body);
-  function writeArticles() {
+  /*function writeArticles() {
     const jsonString = JSON.stringify(req.body);
     fs.writeFile("reqData/articles.json", jsonString, (err) => {
       if (err) {
@@ -65,7 +64,24 @@ app.post("/step2", (req, res) => {
       }
     });
   }
-  writeArticles();
+  writeArticles();*/
+
+  //console.log(req.body.description[1]);
+
+  let arej = [];
+  const duljina = Object.values(req.body.description).length;
+
+  for (let i = 0; i < duljina; i++) {
+    let a = {
+      quantity: req.body.quantity[i],
+      description: req.body.description[i],
+      "tax-rate": req.body.tax[i],
+      price: req.body.price[i],
+    };
+
+    arej.push(a);
+  }
+
   //Dohvacanje datuma za ponudu
 
   const date = new Date();
@@ -90,8 +106,8 @@ app.post("/step2", (req, res) => {
       address: `${tvrtka.address}`,
       zip: `${tvrtka.zip}`,
       city: `${tvrtka.city}`,
-      country: `${tvrtka.country}`,
-      oib: `${tvrtka.oib}`,
+      country: `${tvrtka.drzava}`,
+      custom1: `OIB: ${tvrtka.oib}`,
     },
 
     sender: {
@@ -100,7 +116,7 @@ app.post("/step2", (req, res) => {
       zip: `${maticnaTvrtka.sender.zip}`,
       city: `${maticnaTvrtka.sender.city}`,
       country: `${maticnaTvrtka.sender.country}`,
-      oib: "1234567891234",
+      custom1: `OIB: ${maticnaTvrtka.sender.oib}`,
     },
 
     //      Offcourse we would like to use our own logo on this invoice. There are a few ways to do this.
@@ -114,24 +130,10 @@ app.post("/step2", (req, res) => {
 
     information: {
       // Invoice number
-      number: `${year}.0001`,
+      number: `${year}.${month}.${day}.${hour}.${minutes}`,
       // Invoice data
       date: `${day}.${month}.${year}`,
     },
-    products: [
-      {
-        quantity: "1",
-        description: `${articles.nazivArtiklaJedan}`,
-        tax: 25,
-        price: `${articles.cijenaJedan}`,
-      },
-      {
-        quantity: "1",
-        description: `${articles.nazivArtiklaDva}`,
-        tax: 25,
-        price: `${articles.cijenaDva}`,
-      },
-    ],
 
     marginTop: 5,
     marginRight: 25,
@@ -162,6 +164,7 @@ app.post("/step2", (req, res) => {
     },
   };
 
+  data.products = arej;
   easyinvoice.createInvoice(data, function (result) {
     const pdf = result.pdf;
     fs.writeFileSync("invoice.pdf", pdf, "base64");
