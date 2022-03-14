@@ -166,8 +166,7 @@ app.post("/step2", (req, res) => {
 
   data.products = arej;
   easyinvoice.createInvoice(data, function (result) {
-    const pdf = result.pdf;
-    fs.writeFileSync("invoice.pdf", pdf, "base64");
+    easyinvoice.download(`ponuda.pdf`, result.pdf);
   });
 });
 
