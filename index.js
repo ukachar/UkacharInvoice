@@ -53,7 +53,7 @@ app.post("/step", function (req, res) {
 
 app.post("/step2", (req, res) => {
   //res.send(`<h1>Šljaka</h1>`);
-  res.send(req.body);
+  //res.send(req.body);
   /*function writeArticles() {
     const jsonString = JSON.stringify(req.body);
     fs.writeFile("reqData/articles.json", jsonString, (err) => {
@@ -165,9 +165,20 @@ app.post("/step2", (req, res) => {
   };
 
   data.products = arej;
+
   easyinvoice.createInvoice(data, function (result) {
-    easyinvoice.download(`ponuda.pdf`, result.pdf);
+    const pdf = result.pdf;
+    fs.writeFileSync(`ponuda${hour}${minute}${seconds}.pdf`, pdf, "base64");
   });
+
+  setInterval(() => {
+    res.redirect("/download");
+  }, 3000);
+});
+
+app.get("/download", (req, res) => {
+  res.download(__dirname + "/ponuda.pdf");
+  //res.sendFile(__dirname + "/public/success.html");
 });
 
 //SERVER END
