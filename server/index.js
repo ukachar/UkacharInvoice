@@ -1,8 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fs = require('fs').promises;
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
+app.use(cors());
 var easyinvoice = require('easyinvoice');
 
 // Parse JSON and URL-encoded bodies
@@ -19,6 +22,45 @@ app.post('/', (req, res) => {
     const { data } = req.body; // Assuming the incoming POST data has a 'data' field
     res.send(`Received POST request with data: ${data}`);
 });
+
+
+
+app.get('/settings', async (req, res) => {
+    try {
+        const filePath = './settings.json';
+        const data = await fs.readFile(filePath, 'utf-8');
+        console.log(`Settings read from ${filePath}:`, data);
+        res.json(JSON.parse(data));
+    } catch (error) {
+        console.error('Error reading settings:', error);
+        res.status(500).json({ error: 'Internal Server Error', message: error.message });
+    }
+});
+
+
+// Endpoint to write to settings.json
+app.post('/settings', async (req, res) => {
+    try {
+        const newData = req.body;
+
+        // Read existing settings from the JSON file
+        const settingsFile = await fs.readFile('./settings.json', 'utf-8');
+        let settings = JSON.parse(settingsFile);
+
+        // Update or rewrite the contents
+        settings = { ...settings, ...newData };
+
+        // Write the updated settings back to the JSON file
+        await fs.writeFile('./settings.json', JSON.stringify(settings, null, 2));
+
+        console.log('Settings updated:', settings);
+        res.json({ success: true, message: 'Settings updated successfully.' });
+    } catch (error) {
+        console.error('Error updating settings:', error);
+        res.status(500).json({ success: false, message: 'Error updating settings.' });
+    }
+});
+
 
 // Start the server
 app.listen(port, () => {
