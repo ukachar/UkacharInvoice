@@ -53,7 +53,7 @@ function App() {
         </div>
       </section>
       <CreateModal />
-      <SettingsModal />
+      <SettingsModal settings={settings} />
     </>
   );
 }

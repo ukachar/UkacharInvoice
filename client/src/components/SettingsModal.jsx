@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react'
 import SuccesfulToast from './SuccesfulToast';
 
-const SettingsModal = () => {
+const SettingsModal = (props) => {
 
-
+    const { settings } = props;
     const [toastSuccess, setToastSuccess] = useState(null)
 
 
     const [formData, setFormData] = useState({
-        company: '',
-        address: '',
-        zip: '',
-        city: '',
-        country: '',
+        company: settings.company ?? '',
+        address: settings.address ?? '',
+        zip: settings.zip ?? '',
+        city: settings.city ?? '',
+        country: settings.country ?? '',
     });
+
+    useEffect(() => {
+        // Update formData when settings change
+        setFormData({
+            company: settings.company ?? '',
+            address: settings.address ?? '',
+            zip: settings.zip ?? '',
+            city: settings.city ?? '',
+            country: settings.country ?? '',
+        });
+    }, [settings]);
+
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -48,7 +60,7 @@ const SettingsModal = () => {
         }
     };
 
-    const [settings, setSettings] = useState({
+    /*const [settings, setSettings] = useState({
         company: '',
         address: '',
         zip: '',
@@ -65,7 +77,7 @@ const SettingsModal = () => {
     }, []);
     useEffect(() => {
         setFormData(settings);
-    }, [settings]);
+    }, [settings]);*/
 
     return (
         <>
